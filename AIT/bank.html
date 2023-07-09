@@ -1,0 +1,55 @@
+<!-- Atharva Paradkar 2201144 -->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Bank Details</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="BankController">
+  <table>
+    <thead>
+      <tr>
+        <th>Bank Name</th>
+        <th>MICR Code</th>
+        <th>IFC Code</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="bank in banks">
+        <td>{{ bank.name }}</td>
+        <td>{{ bank.micr }}</td>
+        <td>{{ bank.ifc }}</td>
+        <td>{{ bank.address }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    angular.module('myApp', [])
+      .controller('BankController', function($scope) {
+        $scope.banks = [
+          {
+            name: 'SBI Bank',
+            micr: '123456789',
+            ifc: 'IFC123',
+            address: 'Mumbai'
+          },
+          {
+            name: 'HDFC Bank',
+            micr: '987654321',
+            ifc: 'IFC456',
+            address: 'Kolkata'
+          },
+          {
+            name: 'Kotak Mahindra Bank',
+            micr: '567890123',
+            ifc: 'IFC789',
+            address: 'Banglore'
+          }
+        ];
+      });
+  </script>
+</body>
+</html>

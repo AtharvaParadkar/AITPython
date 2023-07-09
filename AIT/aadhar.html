@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aadhar Card Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .registration-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+        
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus {
+            outline: none;
+            box-shadow: 0 0 5px #fff;
+        }
+        
+        .form-group .error-message {
+            color: #ff6347;
+            margin-top: 5px;
+        }
+        
+        .form-group .success-message {
+            color: #008000;
+            margin-top: 5px;
+        }
+        
+        .form-group .submit-button {
+            background-color: #008000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var nameInput = document.getElementById("name");
+            var emailInput = document.getElementById("email");
+            var errorMessages = document.getElementsByClassName("error-message");
+            var successMessage = document.getElementById("success-message");
+            
+            var isValid = true;
+            
+            // Reset error messages
+            for (var i = 0; i < errorMessages.length; i++) {
+                errorMessages[i].textContent = "";
+            }
+            
+            if (nameInput.value.trim() === "") {
+                errorMessages[0].textContent = "Name is required";
+                isValid = false;
+            }
+            
+            if (emailInput.value.trim() === "") {
+                errorMessages[1].textContent = "Email is required";
+                isValid = false;
+            } else if (!validateEmail(emailInput.value.trim())) {
+                errorMessages[1].textContent = "Invalid email address";
+                isValid = false;
+            }
+            
+            if (isValid) {
+                successMessage.textContent = "Form submitted successfully";
+            }
+            
+            return isValid;
+        }
+        
+        function validateEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</head>
+<body>
+    <h1>Aadhar Card Registration</h1>
+    <form class="registration-form" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="submit-button" value="Submit">
+        </div>
+        <div class="form-group">
+            <div id="success-message"></div>
+        </div>
+    </form>
+</body>
+</html>
