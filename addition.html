@@ -1,0 +1,38 @@
+<!-- Atharva Paradkar 2201144 -->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Addition of Two Numbers</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="AdditionController" ng-init="number1=0; number2=0">
+  <div>
+    <label>Number 1:</label>
+    <input type="number" ng-model="number1">
+  </div>
+  <div>
+    <label>Number 2:</label>
+    <input type="number" ng-model="number2">
+  </div>
+  <div>
+    <button ng-click="addNumbers()" ng-disabled="!number1 || !number2">Add</button>
+  </div>
+  <div ng-show="result">
+    <h4>Result:</h4>
+    <p ng-bind="result"></p>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+      .controller('AdditionController', function($scope) {
+        $scope.result = null;
+
+        $scope.addNumbers = function() {
+          var sum = $scope.number1 + $scope.number2;
+          $scope.result = "The sum is: " + sum;
+        };
+      });
+  </script>
+</body>
+</html>
